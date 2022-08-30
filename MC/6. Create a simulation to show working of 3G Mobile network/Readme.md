@@ -1,30 +1,48 @@
-#Steps
+#Steps on Ubuntu Platform
 
-1. Install Apache Jmeter for your platform
-Link: https://jmeter.apache.org/download_jmeter.cgi
+    1. Install Apache Jmeter Link: https://jmeter.apache.org/download_jmeter.cgi
 
-2. Extract the files.
+    2. Extract the files.
 
-3. Open Linux Terminal. Navigate to the directory where files were extracted using cd command.
-   For example: cd /home/yourusername/Desktop/program-1.2.3
+    3. Head to bin folder of the extracted jmeter folder, i.e cd jmeter/bin/
+    
+    4. Open terminal inside of bin folder and run ./jmeter
+    
+    5. Right click on Test Plan Create a new Thread Group
+    
+    6. Right click on Thread Group and Select Add > sampler > HTTP Request.
+    
+    7. Fill the boxes with the following details:-
+	   Name : GetAPI
+	   Protocol: HTTPS
+	   Server Name/IP : reqres.in
+	   Path : api/users
+	   
+	   Under "Parameters" click on Add:-
+	   Name : page
+	   Value : 2
+	
+	8. Right-click on the Thread group, Go to Add > listener options
+	   In the box, check 'view results in a table'
+	   Save the file by hitting ctrl + s.
+	
+	9. Hit Run button (Green Arrow Style Button)
+	
+	Now let's test the API for different Speeds!
+	
+	10. Open bin folder of jmeter and search for user.properties file
 
-3. Now install the application using the following 3 commands:
-	 i)  ./configure
-	ii)  make
-   iii)  sudo make install
-
-4. Open bin folder of jmeter and search for user.properties file
-
-5. Add the below code to your user.properties file
-   For 3G network: 
-   httpclient.socket.http.cps= 256000
-   httpclient.socket.https.cps= 256000
-   
-   For 4G network:
-   httpclient.socket.http.cps = 21888
-   httpclient.socket.https.cps = 21888
+	11. Add the below code to your user.properties file
+	    
+		For 3G network: 
+	    httpclient.socket.http.cps= 256000
+	    httpclient.socket.https.cps= 256000
+	   
+	    For 4G network:
+	    httpclient.socket.http.cps = 21888
+	    httpclient.socket.https.cps = 21888
   
-6. Restart jmeter
+	12. Restart jmeter
+	
+	13. Test the APIs Again
 
-
-   
