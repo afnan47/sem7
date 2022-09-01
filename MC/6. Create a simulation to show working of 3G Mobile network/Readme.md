@@ -1,6 +1,6 @@
-#Steps on Ubuntu Platform
+# Steps on Ubuntu Platform
 
-    1. Install Apache Jmeter Link: https://jmeter.apache.org/download_jmeter.cgi
+    1. Download Apache Jmeter Source File, Link: https://jmeter.apache.org/download_jmeter.cgi
 
     2. Extract the files.
 
