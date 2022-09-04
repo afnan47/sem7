@@ -34,15 +34,23 @@
 
 	11. Add the below code to your user.properties file
 	    
-		For 3G network: 
-	    httpclient.socket.http.cps= 256000
-	    httpclient.socket.https.cps= 256000
-	   
-	    For 4G network:
-	    httpclient.socket.http.cps = 21888
-	    httpclient.socket.https.cps = 21888
-  
+		To stimulate 3G network ,
+			Minimum network speed = 384 Kbits/sec downstream
+			the relevant CPS value would be: 49152  (384* 1024/8)
+
+			Maximum network speed = 2000 Kbits/sec downstream
+			the relevant CPS value would be: 256000  (2000 * 1024/8)
+
+		To stimulate 4G network ,
+			Minimum network speed = 3000 Kbits/sec downstream
+			the relevant CPS value would be: 384000  (3000* 1024/8)
+
+			Maximum network speed = 10000 Kbits/sec downstream
+			the relevant CPS value would be: 1280000  (10000 * 1024/8)
+	  
 	12. Restart jmeter
 	
-	13. Test the APIs Again
+	13. Open the saved test file.
+	
+	14. Test the API Again
 
