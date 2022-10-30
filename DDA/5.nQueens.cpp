@@ -1,51 +1,80 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-void printBoard(int board[], int n){
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            if(board[i] == j){
-                cout << " Q ";
-            }    
-            else{
-                cout << " X ";
-            }
+bool isSafe(int **arr, int x, int y, int n){
+    for(int row=0;row<x;row++){
+        if(arr[row][y]==1){
+            return false;
         }
-        cout << '\n';
     }
-    cout << "\n\n";
-}
 
-bool isSafe(int board[], int row, int col, int n){
-    for(int i = 0; i < row; i++){
-        int rd = abs(row - board[i]);
-        int cd = abs(col - board[i]);
-        if(rd == cd || rd == 0 || cd == 0) return false;
+    int row =x;
+    int col =y;
+    while(row>=0 && col>=0){
+        if(arr[row][col]==1){
+            return false;
+        }
+        row--;
+        col--;
     }
+
+    row =x;
+    col =y;
+    while(row>=0 && col<n){
+        if(arr[row][col]==1){
+            return false;
+        }
+        row--;
+        col++;
+    }
+
     return true;
 }
 
-void solveNqueens(int board[], int row, int n){
-    if(row > n){
-        printBoard(board, n);
+void printBoard(int **arr, int n){
+	for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+			if(arr[i][j] == 1) cout << "[Q]";
+			else cout << "[]";
+		}
+        cout << endl;
+	}
+	cout << endl;
+	cout << endl;
+}
+
+
+void nQueen(int** arr, int x, int n){
+    if(x == n){
+        printBoard(arr, n);
+		return;
     }
-    else{
-        for(int col = 0; col < n; col++){
-            if(isSafe(board, row, col, n)){
-                board[row] = col;
-                solveNqueens(board, row + 1, n);
-            }
-            board[row] = -1;
+
+    for(int col=0;col<n;col++){
+        if(isSafe(arr,x,col,n)){
+            arr[x][col]=1;
+            nQueen(arr,x+1,n);
+            arr[x][col]=0;
         }
     }
 }
 
 
 int main(){
-    int n = 3;
-    // cin >> n;
-    int board[n] = {-1};
-    //[-1,-1,-1]
-    solveNqueens(board, 0, n);
+    int n;
+    cin >> n;
+    
+    int **arr = new int*[n];    
+    for(int i=0;i<n;i++){
+        arr[i] = new int[n];
+        for(int j=0;j<n;j++){
+            arr[i][j]=0;
+        }
+    }
+	
+	nQueen(arr, 0, n);
+	
+	cout << "--------All possible solutions--------";
+	
     return 0;
 }
