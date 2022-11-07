@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Frame Animation</string>
+    <string name="blink">BLINK</string>
+    <string name="clockwise">ROTATE</string>
+    <string name="fade">FADE</string>
+    <string name="move">MOVE</string>
+    <string name="slide">SLIDE</string>
+    <string name="zoom">ZOOM</string>
+    <string name="stop_animation">STOP ANIMATION</string>
+    <string name="course_rating">Course Rating</string>
+    <string name="course_name">Course Name</string>
+</resources>
