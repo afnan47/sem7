@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employee>
+<fname>Sohan</fname>
+<lname>Shrungare</lname>
+<home>Pune</home>
+<expertise name="SQl"/>
+<expertise name="Python"/>
+<expertise name="Testing"/>
+<expertise name="Business"/>
+</employee>
