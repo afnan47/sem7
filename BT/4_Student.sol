@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// pragma solidity ^0.8.6
+pragma solidity >= 0.7.0;
 
 contract Student_management{
 
@@ -23,5 +23,6 @@ contract Student_management{
 				return(stud.Name, stud.Department);
 			}
 		}
+        return("Name Not Found", "Department Not Found");
 	}
 }
