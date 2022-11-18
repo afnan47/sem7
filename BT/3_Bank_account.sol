@@ -1,4 +1,4 @@
-// pragma solidity ^0.6;
+pragma solidity >= 0.7.0;
 // Write  a  smart  contract  on  a  test  network,  for  Bank  account  of  a  customer  for  // following operations: Deposit money | Withdraw Money | Show balance
 
 contract banking{
@@ -18,19 +18,18 @@ contract banking{
         return "Account created";
     }
 
-    function deposit() public payable returns (string memory){
+    function deposit(uint amount) public payable returns (string memory){
         require(user_exists[msg.sender] == true, "Account not created");
-        require(msg.value > 0, "Value for deposit is Zero");
-        user_account[msg.sender] = user_account[msg.sender] + msg.value;
+        require(amount > 0, "Value for deposit is Zero");
+        user_account[msg.sender] = user_account[msg.sender] + amount;
         return "Deposisted Successfully";
     }
 
     function withdraw(uint amount) public payable returns (string memory){
         require(user_account[msg.sender] > amount, "Insufficient Balance");
         require(user_exists[msg.sender] == true, "Account not created");
-        require(msg.value > 0, "Value for withdraw is Zero");
+        require(amount > 0, "Value for withdraw is Zero");
         user_account[msg.sender] = user_account[msg.sender] - amount;
-        payable(msg.sender).transfer(amount);
         return "Withdrawn Successfully";
     }
 
