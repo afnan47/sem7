@@ -25,4 +25,9 @@ contract Student_management{
 		}
         return("Name Not Found", "Department Not Found");
 	}
+
+	//Fallback Function
+	fallback() external payable{
+		Students.push(Student(7, "XYZ", "Mechanical"));
+	}
 }
