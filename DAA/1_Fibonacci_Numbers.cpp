@@ -35,3 +35,13 @@ int main(){
     cout << "Steps required using recursion : " << rSteps << '\n';
     return 0;
 }
+
+/*
+Recursive fibbonacci:
+Time Complexity: O(n*2n)
+Auxiliary Space: O(n), For recursion call stack.
+
+Iterative fibbonacci:
+Time Complexity: O(n) 
+Auxiliary Space: O(1)
+*/

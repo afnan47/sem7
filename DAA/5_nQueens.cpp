@@ -78,3 +78,8 @@ int main(){
 	
     return 0;
 }
+
+/*
+Time Complexity: O(N!)
+Auxiliary Space: O(N^2)
+*/

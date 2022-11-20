@@ -15,3 +15,7 @@ for i in range(len(arr)):
 		w -= itemWt
 
 print(price)
+
+# Fractional Knapsack :
+# Time Complexity: O(N * log N)
+# Auxiliary Space: O(N)
