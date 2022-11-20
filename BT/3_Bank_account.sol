@@ -1,38 +1,29 @@
-pragma solidity >= 0.7.0;
-// Write  a  smart  contract  on  a  test  network,  for  Bank  account  of  a  customer  for
-  // following operations: Deposit money | Withdraw Money | Show balance
-contract Bank{
-    mapping(address => uint) public user_account;
-    mapping(address => bool) public user_exist;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity >=0.8.0;
 
-    function create_account() public payable returns(string memory){
-        require(user_exist[msg.sender] == false, "Account Already created!");
-        user_account[msg.sender] = msg.value;
-        user_exist[msg.sender] = true;
-        return "Account created";
+contract bank_account {
+    mapping(address => uint256) public user_balance;
+    mapping(address => bool) public is_user;
+
+    function create_account() public {
+        require(is_user[msg.sender] == false, "Account already exist");
+        is_user[msg.sender] = true;
     }
 
-    function deposit(uint amount) public payable returns(string memory){
-        require(user_exist[msg.sender] == true, "Account not created!");
-        require(amount > 0, "Amount should be greater than 0");
-        user_account[msg.sender] += amount;
-        return "Amount deposisted sucessfully";
+    function deposit() public payable {
+        require(is_user[msg.sender], "User Account Not Found");
+        user_balance[msg.sender] += msg.value;
     }
 
-    function withdraw(uint amount) public payable returns(string memory){
-        require(user_exist[msg.sender] == true, "Account not created!");
-        require(amount > 0, "Amount should be greater than 0");
-        require(user_account[msg.sender] >= amount, "Amount is greater than money deposisted");
-        user_account[msg.sender] -= amount;
-        return "Amount withdrawn sucessfully";    
+    function withdraw(uint256 amount) public {
+        require(is_user[msg.sender], "User Account Not Found");
+        require(user_balance[msg.sender] >= amount, "You don't have enough balance to withdraw");
+        require(payable(msg.sender).send(amount));
+        user_balance[msg.sender] -= amount;
     }
 
-    function account_balance() public view returns(uint){
-        return user_account[msg.sender];
+    function show_balance(address user) public view returns (uint256) {
+        require(is_user[user], "User Account Not Found");
+        return (user_balance[user]);
     }
-    
-    function account_exists() public view returns(bool){
-        return user_exist[msg.sender];
-    }
-
 }

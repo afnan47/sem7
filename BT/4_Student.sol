@@ -1,33 +1,34 @@
-// SPDX-License-Identifier: MIT
-pragma solidity >= 0.7.0;
+//SPDX-License-Identifier: Unlicensed
+pragma solidity >=0.8.0;
 
-contract Student_management{
+contract Student {
+    struct student {
+        uint256 prn;
+        string name;
+        string class;
+        string department;
+    }
+    uint256 PRN;
+    mapping(uint256 => student) studentMap;
 
-	struct Student{
-		int stud_id;
-		string Name;
-		string Department;
-	}
+    function addStudent(
+        string memory name,
+        string memory class,
+        string memory department
+    ) public {
+        PRN += 1;
+        studentMap[PRN] = student(PRN, name, class, department);
+    }
 
-	Student[] Students;
+    function getStudent(uint256 _id) public view returns (student memory) {
+        return studentMap[_id];
+    }
 
-	function add_stud(int stud_id, string memory Name, string memory Department) public{
-		Student memory stud = Student(stud_id, Name, Department);
-		Students.push(stud);
-	}
+    function totalStudents() public view returns (uint256) {
+        return (PRN);
+    }
 
-	function getStudent(int stud_id) public view returns(string memory, string memory){
-		for(uint i = 0; i < Students.length; i++){
-			Student memory stud = Students[i];
-			if(stud.stud_id == stud_id){
-				return(stud.Name, stud.Department);
-			}
-		}
-        return("Name Not Found", "Department Not Found");
-	}
-
-	//Fallback Function
-	fallback() external payable{
-		Students.push(Student(7, "XYZ", "Mechanical"));
-	}
+    fallback() external {
+        addStudent("Unknown", "FE", "CSE");
+    }
 }
