@@ -9,6 +9,7 @@ for i in range(len(arr)):
 	itemP = arr[i][0]
 	if(itemWt > w):
 		price += w*(itemP / itemWt)
+		break
 	else:
 		price += itemP	
 		w -= itemWt
